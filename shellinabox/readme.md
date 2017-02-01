@@ -17,5 +17,10 @@ wget https://raw.githubusercontent.com/mcgr0g/rancho/master/shellinabox/00_solar
 ls -la
 cp 00_solarized.css /etc/shellinabox/options-available/
 ln -s /etc/shellinabox/options-available/00_solarized.css /etc/shellinabox/options-enabled/
-/etc/init.d/shellinabox restart
+vim /etc/default/shellinabox
 ```
+change SHELLINABOX_ARGS to this
+
+    SHELLINABOX_ARGS="--no-beep --static-file=styles.css:/etc/shellinabox/options-enabled/00_solarized.css"
+
+and finally `/etc/init.d/shellinabox restart`
