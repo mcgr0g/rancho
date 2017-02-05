@@ -30,7 +30,7 @@ owner2=owner2 # product owner2
 skey5=skey5
 pass5=pass5
 
-tuser=stub # юзер для быстрого и небезопасного подключения по команде su enot -
+tuser=stub # юзер для быстрого и небезопасного подключения
 pass6=pass6
 ## end private data ##
 # если файла с приватными данными не будет, используем определенные, только что
@@ -42,50 +42,52 @@ echo crating default users $dev1, $dev2, $robot, $owner1, $owner2, $tuser at hos
 
 ## usual group configuration without acl ##
 addgroup dev # группа для разрабов, из под нее можно редактировать исхода
-addgroup keyonly # там только те, кому можно заходить по ключу ssh
+addgroup sshuser # там только те, кому можно заходить по ключу ssh
 
 #m=создать хомяк; U=создать и добавить группу пользователя; G=добавить в группы через запятую;
-# useradd -mUG dev,sudo,keyonly enot # developer1
+# useradd -mUG dev,sudo,sshuser enot # developer1
 # passwd enot  #pass for developer1
 groups $dev1
-sudo usermod -a -G dev,keyonly $dev1
+sudo usermod -a -G dev,sshuser $dev1
 groups $dev1
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 
-useradd -mUG dev,sudo,keyonly -s /bin/bash $dev2 
+useradd -mUG dev,sudo,sshuser -s /bin/bash $dev2 
 echo "$dev2:$pass2" | sudo chpasswd  #pass 
 cat /etc/passwd | grep $dev2
 groups $dev2
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 
-useradd -mG www-data,keyonly -s /bin/bash $robot 
+useradd -mG www-data,sshuser -s /bin/bash $robot 
 echo "$robot:$pass3" | sudo chpasswdr # pass 
 cat /etc/passwd | grep $robot
 groups $robot
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 
-useradd -mUG www-data,keyonly -s /bin/bash $owner1 
+useradd -mUG www-data,sshuser -s /bin/bash $owner1 
 echo "$owner1:$pass4" | sudo chpasswd # pass
 cat /etc/passwd | grep $owner1
 groups $owner1
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 
-useradd -mUG www-data,keyonly -s /bin/bash $owner2 
+useradd -mUG www-data,sshuser -s /bin/bash $owner2 
 echo "$owner2:$pass5" | sudo chpasswd # pass 
 cat /etc/passwd | grep $owner2
 groups $owner2
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 
-useradd -mU -s /bin/bash $tuser 
+useradd -mUG sshuser -s /bin/bash $tuser 
 echo "$tuser:$pass6" | sudo chpasswd #pass 
 cat /etc/passwd | grep $tuser
 groups $tuser
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
+# подключаться по команде: su enot -
+# запросить судо: sudo -S true
 
 # userdel -r ubuntu #delete user from virtualbox default image
