@@ -52,7 +52,7 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 PasswordAuthentication no
 ChallengeResponseAuthentication no
 PubkeyAuthentication yes
-AllowGroups sshuser
+AllowGroups keyonly
 PermitEmptyPasswords no
 # http://serverfault.com/a/285844
 Match User stub 
