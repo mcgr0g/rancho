@@ -62,7 +62,7 @@ Match User stub
 Match all # http://serverfault.com/a/817368
 EOT
 
-service sshd restart
+/etc/init.d/ssh restart
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";fi;echo
-service sshd status
+/etc/init.d/ssh status
