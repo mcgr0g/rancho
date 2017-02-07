@@ -35,7 +35,7 @@ pass5=pass5
 ## end private data ##
 
 # если файла с приватными данными не будет, используем определенные, только что
-source $dircur/users_init.shf
+source $dircur/users_init.sh
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";fi;echo
 
