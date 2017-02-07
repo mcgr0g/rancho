@@ -49,44 +49,44 @@ addgroup keyonly # там только те, кому можно заходит�
 # passwd enot  #pass for developer1
 groups $dev1
 sudo usermod -a -G dev,keyonly $dev1
-groups $dev1
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
+groups $dev1
 
 useradd -mUG dev,sudo,keyonly -s /bin/bash $dev2 
+if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
+else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 echo "$dev2:$pass2" | sudo chpasswd  #pass 
 cat /etc/passwd | grep $dev2
 groups $dev2
-if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
-else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 
 useradd -mG www-data,keyonly -s /bin/bash $robot 
+if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
+else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 echo "$robot:$pass3" | sudo chpasswdr # pass 
 cat /etc/passwd | grep $robot
 groups $robot
-if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
-else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 
 useradd -mUG www-data,keyonly -s /bin/bash $owner1 
+if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
+else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 echo "$owner1:$pass4" | sudo chpasswd # pass
 cat /etc/passwd | grep $owner1
 groups $owner1
-if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
-else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 
 useradd -mUG www-data,keyonly -s /bin/bash $owner2 
+if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
+else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 echo "$owner2:$pass5" | sudo chpasswd # pass 
 cat /etc/passwd | grep $owner2
 groups $owner2
-if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
-else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 
 useradd -mUG keyonly -s /bin/bash $tuser 
+if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
+else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 echo "$tuser:$pass6" | sudo chpasswd #pass 
 cat /etc/passwd | grep $tuser
 groups $tuser
-if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
-else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
 # подключаться по команде: su enot -
 # запросить судо: sudo -S true
 
