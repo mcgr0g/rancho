@@ -63,7 +63,7 @@ groups $dev2
 useradd -mG www-data,keyonly -s /bin/bash $robot 
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";exit $?;fi;echo
-echo "$robot:$pass3" | sudo chpasswdr # pass 
+echo "$robot:$pass3" | sudo chpasswd # pass 
 cat /etc/passwd | grep $robot
 groups $robot
 
