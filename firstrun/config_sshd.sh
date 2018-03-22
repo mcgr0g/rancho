@@ -57,7 +57,6 @@ PermitEmptyPasswords no
 # http://serverfault.com/a/285844
 Match User stub 
     PasswordAuthentication yes
-    AllowTCPForwarding no
     X11Forwarding no
 Match all # http://serverfault.com/a/817368
 EOT
