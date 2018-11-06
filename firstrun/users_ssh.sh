@@ -73,10 +73,11 @@ ssh-keygen -t rsa -b 4096 -C "$owner2@$hostn" -P "$skey5" -f "/home/$owner2/.ssh
 cat /home/$owner2/.ssh/$owner2@$hostn.rsa.pub >> /home/$owner2/.ssh/authorized_keys
 chown -R $owner2:$owner2 /home/$owner2/.ssh
 
-cp /home/$dev1/.ssh/$dev1@$hostn.rsa /tmp
-cp /home/$dev2/.ssh/$dev2@$hostn.rsa /tmp
-cp /home/$robot/.ssh/$robot@$hostn.rsa /tmp
-cp /home/$owner1/.ssh/$owner1@$hostn.rsa /tmp
-cp /home/$owner2/.ssh/$owner2@$hostn.rsa /tmp
-chown $dev1:$dev1 /tmp/*@$hostn.rsa
-ls -la /tmp/
+mkdir /tmp/keys
+cp /home/$dev1/.ssh/$dev1@$hostn.rsa /tmp/keys
+cp /home/$dev2/.ssh/$dev2@$hostn.rsa /tmp/keys
+cp /home/$robot/.ssh/$robot@$hostn.rsa /tmp/keys
+cp /home/$owner1/.ssh/$owner1@$hostn.rsa /tmp/keys
+cp /home/$owner2/.ssh/$owner2@$hostn.rsa /tmp/keys
+chown $dev1:$dev1 /tmp/keys/*@$hostn.rsa
+ls -la /tmp/keys

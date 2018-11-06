@@ -18,7 +18,6 @@ ls -la ~/.local/bin
 ./pip install virtualenvwrapper --user
 sudo python3 get-pip.py
 pip3 -V
-
 ```
 
 ## multi-user
@@ -31,6 +30,7 @@ sudo pip3 install --user pip
 pip3 install --upgrade pip
 pip install --user virtualenv
 ```
+
 ## path config
 каждому пользаку потребуется прописать
 ```
@@ -46,6 +46,7 @@ mkdir $WORKON_HOME
 echo "export WORKON_HOME=$WORKON_HOME" >> ~/.bashrc
 source ~/.bashrc
 ```
+
 ## test
 а теперь запустим нормальное окружение с python3
 ```
@@ -57,3 +58,4 @@ python -V
 pip3 -V
 pip -V
 ```
+вуаля

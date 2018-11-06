@@ -15,10 +15,11 @@ toend=$(tput hpa $(tput cols))$(tput cub 6)
 hostn=$(cat /etc/hostname)
 cdir=$(pwd)
 ## config ssh group ##
-# cp /etc/ssh/sshd_config /etc/ssh/sshd_config.factory-defaults
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.factory-defaults
 cat <<EOT > /etc/ssh/sshd_config
 Port 22
 Protocol 2
+HashKnownHosts
 
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_dsa_key
@@ -47,6 +48,7 @@ TCPKeepAlive yes
 AllowTcpForwarding yes
 AcceptEnv LANG LC_*
 UsePAM yes
+# sudo apt-get install openssh-server
 Subsystem sftp /usr/lib/openssh/sftp-server
 
 PasswordAuthentication no
@@ -61,7 +63,8 @@ Match User stub
 Match all # http://serverfault.com/a/817368
 EOT
 
-/etc/init.d/ssh restart
+# /etc/init.d/ssh restart
+sudo service ssh restart
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";fi;echo
 /etc/init.d/ssh status
