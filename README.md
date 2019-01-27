@@ -1,10 +1,24 @@
+<!-- MarkdownTOC -->
+
+- [wtf](#wtf)
+- [small](#small)
+- [ranchos](#ranchos)
+    - [buben](#buben)
+    - [pinky](#pinky)
+
+<!-- /MarkdownTOC -->
+
+
+<a id="wtf"></a>
 # wtf
 Это домашний проект rancho. Скрипты конфигурации и хаки для сервера на ubuntu.
 
+<a id="small"></a>
 # small
 малые и|или атомарные проекты
 - [guacamole](https://guacamole.apache.org/) [man](guacamole.md)
 
+<a id="ranchos"></a>
 # ranchos
 композитные проекты и виртуалки
 
@@ -17,9 +31,11 @@
 | retro     | винда XP для проверки сомнительных приложений                                                               |
 | shmetro   | win10 для поиграться с чем-нибудь                                                                           |
 
+<a id="buben"></a>
 ## buben
 Описание [проекта](buben/readme.md).
 Описание [параметров](buben/sshd_config_desc.txt) конфигурации sshd.
 
+<a id="pinky"></a>
 ## pinky
 Описание [проекта](pinky/readme.md).
