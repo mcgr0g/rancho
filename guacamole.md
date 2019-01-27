@@ -22,6 +22,7 @@ touch /etc/guacamole/user-mapping.xml
 ## configure GUACAMOLE_HOME for tomcat
 ```
 GUACVERSION="1.0.0"
+DBPASS="givemefuknaccess"
 echo "" >> /etc/default/${TOMCAT}
 # echo "" >> /etc/default/tomcat8
 echo "# GUACAMOLE ENV VARIABLE" >> /etc/default/${TOMCAT}
@@ -93,7 +94,7 @@ echo "postgresql-hostname: localhost" >> /etc/guacamole/guacamole.properties
 echo "postgresql-port: 5432" >> /etc/guacamole/guacamole.properties
 echo "postgresql-database: guacamole_db" >> /etc/guacamole/guacamole.properties
 echo "postgresql-username: guacamole_user" >> /etc/guacamole/guacamole.properties
-echo "postgresql-password: givemefuknaccess" >> /etc/guacamole/guacamole.properties
+echo "postgresql-password: ${DBPASS}" >> /etc/guacamole/guacamole.properties
 echo "postgresql-user-password-min-length: 8" >> /etc/guacamole/guacamole.properties
 echo "postgresql-user-password-require-multiple-case: true" >> /etc/guacamole/guacamole.properties
 echo "postgresql-user-password-require-symbol: true" >> /etc/guacamole/guacamole.properties
@@ -109,17 +110,20 @@ service ${TOMCAT} restart
 ```
 ## postgresql provision the guacamole database
 ```
-sudo su - postgres
 cd /opt/incubator-guacamole-client/extensions/guacamole-auth-jdbc/modules/guacamole-auth-jdbc-postgresql/
+la -la schema/*.sql
 #sudo -u postgres psql
 #su postgres -
+
+sudo su - postgres << EOF
 createdb guacamole_db
 cat schema/*.sql | psql -d guacamole_db -f -
 psql -d guacamole_db
-CREATE USER guacamole_user WITH PASSWORD 'givemefuknaccess';
+CREATE USER guacamole_user WITH PASSWORD '%{DBPASS}';
 GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA public TO guacamole_user;
 GRANT SELECT,USAGE ON ALL SEQUENCES IN SCHEMA public TO guacamole_user;
 \q
+EOF
 ```
 
 ## start
@@ -135,7 +139,7 @@ systemctl restart tomcat8
 
 # nginx on router
 
-##base
+## base
 in `server{}` location
 ```
 client_header_buffer_size    1k;
@@ -146,7 +150,7 @@ client_body_timeout          12;
 client_max_body_size         8m;
 ```
 
-##new location
+## new location
 also in `server{}`
 ```
 location /guac/ {
@@ -173,7 +177,7 @@ location /guac/ {
 # login
 ## default login
 http://IP-ADDRESS:8080/guacamole/
-guacadmin/guacadmin
+login/pass = guacadmin/guacadmin
 
 ## rdp
 there is bug, new connection setup page dont know about `Guacamole Proxy Parameters (guacd)`
