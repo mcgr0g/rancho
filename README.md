@@ -16,6 +16,7 @@
 <a id="small"></a>
 # small
 малые и|или атомарные проекты
+- быстрая [конфигурация](shellinabox/readme.md) веб-шелла [shellinabox](https://github.com/shellinabox/shellinabox)
 - [guacamole](https://guacamole.apache.org/) [man](guacamole.md)
 
 <a id="ranchos"></a>
