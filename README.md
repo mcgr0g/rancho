@@ -19,5 +19,7 @@
 
 ## buben
 Описание [проекта](buben/readme.md).
-Описание [параметров(sshd_config_desc.txt)] конфигурации sshd.
+Описание [параметров](buben/sshd_config_desc.txt) конфигурации sshd.
 
+## pinky
+Описание [проекта](pinky/readme.md).
