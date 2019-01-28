@@ -5,6 +5,7 @@
 - [ranchos](#ranchos)
     - [buben](#buben)
     - [pinky](#pinky)
+    - [shmetro](#shmetro)
 
 <!-- /MarkdownTOC -->
 
@@ -41,3 +42,7 @@
 <a id="pinky"></a>
 ## pinky
 Описание [проекта](pinky/readme.md).
+
+<a id="shmetro"></a>
+## shmetro
+Есть некоторые рекомендации по [настройке](guest_os_windows.md)
