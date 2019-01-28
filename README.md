@@ -45,4 +45,4 @@
 
 <a id="shmetro"></a>
 ## shmetro
-Есть некоторые рекомендации по [настройке](guest_os_windows.md)
+Есть некоторые рекомендации по [настройке](virtualbox/guest_os_windows.md)
