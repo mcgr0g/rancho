@@ -43,7 +43,7 @@ echo crating default users $dev1, $dev2, $robot, $owner1, $owner2 at host $hostn
 
 ## config ssh for users ##
 #C=comment; P=old_passphrase; f=path_and_filename_of_key; q=silience_mode
-mkdir /home/$dev1/.ssh
+# mkdir /home/$dev1/.ssh
 chmod 700 /home/$dev1/.ssh
 ssh-keygen -t rsa -b 4096 -C "$dev1@$hostn" -P "$skey1" -f "/home/$dev1/.ssh/$dev1@$hostn.rsa" -q
 cat /home/$dev1/.ssh/$dev1@$hostn.rsa.pub >> /home/$dev1/.ssh/authorized_keys

@@ -19,15 +19,11 @@ cp /etc/ssh/sshd_config /etc/ssh/sshd_config.factory-defaults
 cat <<EOT > /etc/ssh/sshd_config
 Port 22
 Protocol 2
-HashKnownHosts
 
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_dsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
-UsePrivilegeSeparation yes
-KeyRegenerationInterval 3600
-ServerKeyBits 1024
 SyslogFacility AUTH
 LogLevel INFO
 LoginGraceTime 120
@@ -36,7 +32,6 @@ StrictModes yes
 
 # AuthorizedKeysFile     %h/.ssh/authorized_keys
 IgnoreRhosts yes
-RhostsRSAAuthentication no
 HostbasedAuthentication no
 PermitEmptyPasswords no
 
@@ -64,7 +59,8 @@ Match all # http://serverfault.com/a/817368
 EOT
 
 # /etc/init.d/ssh restart
-sudo service ssh restart
+systemctl status sshd
+# service ssh restart
 if [ $? -eq 0 ];then echo -n "${green}${toend}[OK]";echo -n "${reset}";
 else echo -n "${red}${toend}[fail]";echo -n "${reset}";fi;echo
 /etc/init.d/ssh status
